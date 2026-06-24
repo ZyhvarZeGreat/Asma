@@ -1,0 +1,44 @@
+export const assets = {
+  hero: "/images/hero-background.png",
+  logo: "/images/logo.svg",
+} as const;
+
+export const site = {
+  location: "Nigeria, Africa.",
+  launchNotice: "Full Website Launching Soon",
+  brandName: "ASMA Creativo",
+  tagline: "Building Global Brands From Africa.",
+  description:
+    "A global brand & marketing agency building memorable brands from Africa for the world.",
+  agencyLabel: "Global Brand & Marketing Agency",
+} as const;
+
+export const services = {
+  branding: {
+    label: "Branding",
+    columns: [
+      ["Brand Identity", "Brand Strategy", "Brand Positioning"],
+      ["Brand Consulting", "Strategic Storytelling"],
+    ],
+  },
+  marketing: {
+    label: "Marketing",
+    columns: [
+      ["Growth Marketing", "Go-to-Market Strategy", "Market Positioning"],
+      ["Content Strategy", "Performance Marketing"],
+    ],
+  },
+} as const;
+
+export type ServiceTab = keyof typeof services;
+
+export const ourStory = {
+  title: "Our Story",
+  tagline: "Building Global Brands From Africa.",
+  paragraphs: [
+    "ASMA is a Pan-African branding and marketing agency dedicated to building globally recognized brands from Africa while helping global brands successfully enter and thrive within African markets.",
+    "We provide brand strategy, market positioning, growth marketing, and go-to-market solutions that help businesses scale across borders, connect with consumers, and create lasting market impact.",
+    "ASMA serves ambitious African founders, startups, SMEs, and established companies seeking global relevance, as well as international brands looking to enter, understand, and grow within Africa's diverse markets.",
+    "Our mission is to bridge Africa and the world by building brands that transcend and tell stories across borders. We are committed to helping African brands compete on the global stage while enabling global brands to authentically connect with African consumers, creating sustainable growth and economic impact across the continent.",
+  ],
+} as const;
