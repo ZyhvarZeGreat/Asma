@@ -30,8 +30,12 @@ export function CTAButtons({
 
   return (
     <div className="space-y-6">
-      <p className="max-w-[22rem] text-[clamp(1rem,1.25vw,1.125rem)] font-normal leading-[1.65] text-text-primary max-md:max-w-none">
-        {site.description}
+      <p className="max-w-[30rem] text-[clamp(1rem,1.25vw,1.125rem)] font-normal leading-[1.5] text-text-primary max-md:max-w-none md:max-w-[32rem]">
+        {site.description.map((line) => (
+          <span key={line} className="block">
+            {line}
+          </span>
+        ))}
       </p>
       <div className="flex items-center gap-4 max-md:flex-col max-md:items-stretch">
         <ArrowButton label="Our Story" onClick={onOurStoryClick} />

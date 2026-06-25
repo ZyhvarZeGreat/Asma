@@ -15,8 +15,10 @@ export const site = {
   launchNotice: "Full Website Launching Soon",
   brandName: "ASMA Creativo",
   tagline: "Building Global Brands From Africa.",
-  description:
-    "A global branding & marketing agency building memorable brands from Africa for the world.",
+  description: [
+    "A global branding and marketing agency",
+    "building memorable brands from Africa for the world",
+  ],
   agencyLabel: "Global Brand & Marketing Agency",
 } as const;
 

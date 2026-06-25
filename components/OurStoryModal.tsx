@@ -53,7 +53,7 @@ export function OurStoryModal({ isOpen, onClose }: OurStoryModalProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-stretch justify-center p-0 md:items-center md:p-8 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 ${
         visible ? "animate-overlay-in" : "animate-overlay-out"
       }`}
       role="presentation"
@@ -65,7 +65,7 @@ export function OurStoryModal({ isOpen, onClose }: OurStoryModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="our-story-title"
-        className={`story-glass relative z-10 flex h-full max-h-[100dvh] w-full flex-col overflow-y-auto max-md:rounded-none max-md:border-0 max-md:bg-transparent max-md:shadow-none md:max-h-[90dvh] md:max-w-[1040px] md:rounded-3xl ${
+        className={`story-glass relative z-10 flex h-[min(72dvh,520px)] w-full max-w-[min(92vw,1014px)] flex-col overflow-hidden rounded-3xl max-md:max-h-[82dvh] ${
           visible ? "animate-modal-in" : "animate-modal-out"
         }`}
         onClick={(event) => event.stopPropagation()}
@@ -75,40 +75,36 @@ export function OurStoryModal({ isOpen, onClose }: OurStoryModalProps) {
           type="button"
           onClick={onClose}
           aria-label="Close Our Story"
-          className="absolute right-6 top-6 z-20 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 text-base font-normal leading-none text-text-primary transition-colors hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-rose"
+          className="absolute right-5 top-5 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-white/35 text-lg font-normal leading-none text-text-primary transition-colors hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-rose md:right-6 md:top-6"
         >
           ×
         </button>
 
-        <div className="flex flex-col md:grid md:grid-cols-[1fr_1px_1fr]">
-          <div className="relative flex flex-col">
-            <div className="relative z-10 flex items-center px-6 pb-4 pt-16 md:min-h-[360px] md:flex-1 md:px-16 md:pb-6 md:pt-12">
-              <h2
-                id="our-story-title"
-                className="animate-title-in font-sans text-left text-[clamp(3rem,16vw,7.5rem)] font-light leading-[0.88] tracking-[-0.03em] text-text-primary md:text-[clamp(4rem,10vw,7.5rem)] lg:text-[120px]"
-                style={{ animationDelay: "60ms" }}
-              >
-                <span className="block">Our</span>
-                <span className="block">Story</span>
-              </h2>
-            </div>
+        <div className="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div className="flex min-h-0 flex-col items-start justify-center border-b border-white/10 px-6 py-8 text-left md:border-b-0 md:border-r md:px-10 md:py-6 md:pl-12">
+            <h2
+              id="our-story-title"
+              className="animate-title-in font-sans text-[clamp(3.5rem,16vw,6rem)] font-extrabold leading-[0.88] tracking-[-0.03em] text-text-primary md:text-[clamp(5rem,8vw,7.5rem)] lg:text-[120px]"
+              style={{ animationDelay: "60ms" }}
+            >
+              <span className="block">Our</span>
+              <span className="block">Story</span>
+            </h2>
 
             <p
-              className="relative z-10 animate-title-in max-w-none px-6 pb-8 text-left font-sans text-[16px] font-light leading-snug text-text-tagline md:max-w-[280px] md:px-16 md:pb-8"
+              className="animate-title-in mt-6 max-w-[16rem] font-sans text-[clamp(1rem,1.5vw,1.125rem)] font-normal leading-snug text-text-primary/90"
               style={{ animationDelay: "200ms" }}
             >
               {ourStory.tagline}
             </p>
           </div>
 
-          <div className="story-divider hidden w-px self-stretch md:my-12 md:block" />
-
-          <div className="border-t border-white/[0.1] px-6 py-8 md:border-t-0 md:px-12 md:py-12">
-            <div className="space-y-6 md:max-h-[calc(78vh-7rem)] md:overflow-y-auto md:pr-4">
+          <div className="flex min-h-0 flex-col justify-center overflow-y-auto px-6 py-6 md:px-12 md:py-6">
+            <div className="space-y-5">
               {ourStory.paragraphs.map((paragraph, index) => (
                 <p
                   key={paragraph.slice(0, 32)}
-                  className="animate-paragraph-in max-w-none font-sans text-[15px] font-normal leading-[1.75] text-text-tagline md:text-[16px]"
+                  className="animate-paragraph-in font-sans text-[14px] font-normal leading-[1.7] text-text-primary md:text-[15px]"
                   style={{ animationDelay: `${300 + index * 110}ms` }}
                 >
                   {paragraph}

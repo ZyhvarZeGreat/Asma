@@ -28,12 +28,12 @@ export function LandingPage() {
           isIntroActive ? "asma-page--loading" : ""
         }`}
       >
-        <Hero className={isOurStoryOpen ? "invisible" : undefined} />
+        <Hero />
 
         <div
           className={`relative z-10 flex h-full flex-col px-5 transition-opacity duration-700 ease-out max-md:gap-8 max-md:pt-8 max-md:pb-8 md:px-12 md:py-10 ${
             isIntroActive ? "pointer-events-none opacity-0" : "opacity-100"
-          } ${isOurStoryOpen ? "invisible" : ""}`}
+          } ${isOurStoryOpen ? "pointer-events-none invisible" : ""}`}
         >
           <Header />
 
@@ -55,7 +55,7 @@ export function LandingPage() {
               />
             </div>
 
-            <div className="relative z-10 max-md:static max-md:w-full md:absolute md:bottom-0 md:right-0 md:w-[min(440px,38vw)]">
+            <div className="relative z-10 max-md:static max-md:w-full md:absolute md:bottom-0 md:right-0 md:w-[min(330px,28vw)]">
               <ServiceCard />
             </div>
           </div>
