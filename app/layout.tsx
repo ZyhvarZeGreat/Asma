@@ -3,77 +3,80 @@ import localFont from "next/font/local";
 import { CustomCursor } from "@/components/CustomCursor";
 import "./globals.css";
 
-const clashDisplay = localFont({
+const creatoDisplay = localFont({
   src: [
     {
-      path: "../public/images/fonts/ClashDisplay-Extralight.otf",
-      weight: "200",
+      path: "../public/images/fonts/CreatoDisplay-Thin.otf",
+      weight: "100",
       style: "normal",
     },
     {
-      path: "../public/images/fonts/ClashDisplay-Light.otf",
+      path: "../public/images/fonts/CreatoDisplay-ThinItalic.otf",
+      weight: "100",
+      style: "italic",
+    },
+    {
+      path: "../public/images/fonts/CreatoDisplay-Light.otf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../public/images/fonts/ClashDisplay-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/images/fonts/ClashDisplay-Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/images/fonts/ClashDisplay-Semibold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../public/images/fonts/ClashDisplay-Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-clash-display",
-  display: "swap",
-});
-
-const clashGrotesk = localFont({
-  src: [
-    {
-      path: "../public/images/fonts/ClashGrotesk-Extralight.ttf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../public/images/fonts/ClashGrotesk-Light.ttf",
+      path: "../public/images/fonts/CreatoDisplay-LightItalic.otf",
       weight: "300",
-      style: "normal",
+      style: "italic",
     },
     {
-      path: "../public/images/fonts/ClashGrotesk-Regular.ttf",
+      path: "../public/images/fonts/CreatoDisplay-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/images/fonts/ClashGrotesk-Medium.ttf",
+      path: "../public/images/fonts/CreatoDisplay-RegularItalic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../public/images/fonts/CreatoDisplay-Medium.otf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/images/fonts/ClashGrotesk-Semibold.ttf",
-      weight: "600",
-      style: "normal",
+      path: "../public/images/fonts/CreatoDisplay-MediumItalic.otf",
+      weight: "500",
+      style: "italic",
     },
     {
-      path: "../public/images/fonts/ClashGrotesk-Bold.ttf",
+      path: "../public/images/fonts/CreatoDisplay-Bold.otf",
       weight: "700",
       style: "normal",
     },
+    {
+      path: "../public/images/fonts/CreatoDisplay-BoldItalic.otf",
+      weight: "700",
+      style: "italic",
+    },
+    {
+      path: "../public/images/fonts/CreatoDisplay-ExtraBold.otf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../public/images/fonts/CreatoDisplay-ExtraBoldItalic.otf",
+      weight: "800",
+      style: "italic",
+    },
+    {
+      path: "../public/images/fonts/CreatoDisplay-Black.otf",
+      weight: "900",
+      style: "normal",
+    },
+    {
+      path: "../public/images/fonts/CreatoDisplay-BlackItalic.otf",
+      weight: "900",
+      style: "italic",
+    },
   ],
-  variable: "--font-clash-grotesk",
+  variable: "--font-creato-display",
   display: "swap",
 });
 
@@ -89,11 +92,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${clashDisplay.variable} ${clashGrotesk.variable}`}
-    >
-      <body className={`${clashDisplay.className} font-sans antialiased`}>
+    <html lang="en" className={creatoDisplay.variable}>
+      <body className={`${creatoDisplay.className} font-sans antialiased`}>
         <CustomCursor />
         {children}
       </body>

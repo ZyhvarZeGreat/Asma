@@ -1,15 +1,22 @@
 export const assets = {
-  hero: "/images/hero-background.png",
-  logo: "/images/logo.svg",
+  hero: "/images/hero-slide-1.png",
+  heroSlides: [
+    "/images/hero-slide-1.png",
+    "/images/hero-slide-2.png",
+    "/images/hero-slide-3.png",
+    "/images/hero-slide-4.png",
+  ],
+  logo: "/images/logo.png",
 } as const;
 
 export const site = {
+  headerTagline: "Building global brands from Africa.",
   location: "Nigeria, Africa.",
   launchNotice: "Full Website Launching Soon",
   brandName: "ASMA Creativo",
   tagline: "Building Global Brands From Africa.",
   description:
-    "A global brand & marketing agency building memorable brands from Africa for the world.",
+    "A global branding & marketing agency building memorable brands from Africa for the world.",
   agencyLabel: "Global Brand & Marketing Agency",
 } as const;
 

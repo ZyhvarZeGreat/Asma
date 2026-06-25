@@ -11,28 +11,28 @@ export function ServiceCard() {
 
   return (
     <aside
-      className="w-full overflow-hidden rounded-2xl border border-white/[0.1] bg-glass-bg backdrop-blur-xl md:max-lg:w-[min(360px,calc(100vw-4rem))] lg:w-[392px]"
+      className="w-full overflow-hidden rounded-2xl border border-white/25 bg-black/25 backdrop-blur-md"
       aria-label="Services"
     >
-      <div className="relative min-h-[112px] overflow-hidden px-6 pb-6 pt-6">
-        <p className="relative z-10 max-w-[260px] text-[14px] font-normal leading-snug text-text-primary">
+      <div className="relative overflow-hidden px-5 pb-4 pt-4">
+        <p className="relative z-10 max-w-[16rem] text-[clamp(0.9375rem,1.15vw,1.0625rem)] font-medium leading-snug text-text-primary">
           {site.agencyLabel}
         </p>
-        <p className="relative z-10 mt-4 max-w-[280px] text-[12px] font-normal leading-relaxed text-text-primary/70">
+        <p className="relative z-10 mt-2 max-w-[18rem] text-[clamp(0.8125rem,1vw,0.9375rem)] font-normal leading-relaxed text-text-primary/75">
           {site.description}
         </p>
-        <WavyLines className="pointer-events-none absolute -right-3 top-0 h-[112px] w-[78%] opacity-100" />
+        <WavyLines className="pointer-events-none absolute -right-3 top-0 h-[5.5rem] w-[78%] opacity-100" />
       </div>
 
-      <div className="mx-6 border-t border-white/10" aria-hidden="true" />
+      <div className="mx-5 border-t border-white/25" aria-hidden="true" />
 
-      <div className="min-h-[168px] px-6 py-6">
+      <div className="px-5 py-4">
         <div
-          className="grid grid-cols-1 gap-x-12 gap-y-4 text-[14px] font-normal leading-[1.6] text-text-primary/95 md:grid-cols-2"
+          className="grid grid-cols-1 gap-x-8 gap-y-2 text-[clamp(0.875rem,1vw,0.9375rem)] font-normal leading-[1.45] text-text-primary/95 md:grid-cols-2"
           key={activeTab}
         >
           {current.columns.map((column, columnIndex) => (
-            <ul key={columnIndex} className="space-y-4">
+            <ul key={columnIndex} className="space-y-2">
               {column.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -41,9 +41,9 @@ export function ServiceCard() {
         </div>
       </div>
 
-      <div className="mx-6 border-t border-white/10" aria-hidden="true" />
+      <div className="mx-5 border-t border-white/25" aria-hidden="true" />
 
-      <div className="flex flex-wrap items-center justify-center gap-4 px-6 py-6">
+      <div className="flex flex-wrap items-center justify-center gap-3 px-5 py-4">
         <StaggerButton
           label={services.branding.label}
           isActive={activeTab === "branding"}
