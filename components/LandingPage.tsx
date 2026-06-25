@@ -39,11 +39,11 @@ export function LandingPage() {
 
           <div className="relative min-h-0 flex-1 max-md:flex max-md:flex-col max-md:gap-8">
             <div className="relative z-20 max-md:static max-md:text-left md:absolute md:right-0 md:top-[28%] md:-translate-y-1/2 md:text-right lg:top-[26%]">
-              <h1 className="whitespace-nowrap text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.95] tracking-[-0.02em] text-text-primary lg:text-[clamp(4.5rem,8.5vw,8.25rem)]">
+              <h1 className="text-[clamp(2.75rem,10vw+0.5rem,8.25rem)] leading-[0.95] tracking-[-0.02em] text-text-primary max-md:max-w-full md:whitespace-nowrap">
                 <span className="font-black">ASMA</span>
                 <span className="font-normal"> Creativo</span>
               </h1>
-              <p className="mt-4 text-[clamp(1.125rem,1.75vw,1.75rem)] font-medium leading-snug text-text-primary max-md:mt-3 md:mt-5">
+              <p className="mt-3 max-w-full text-balance text-[clamp(1rem,0.65rem+1.5vw,1.75rem)] font-medium leading-snug text-text-primary md:mt-5">
                 {site.tagline}
               </p>
             </div>
