@@ -54,7 +54,7 @@ export function Hero({ className }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 overflow-hidden bg-[#2b0a0d]${className ? ` ${className}` : ""}`}
+      className={`absolute inset-0 overflow-hidden bg-[#2b0a0d] max-md:fixed max-md:-z-[1]${className ? ` ${className}` : ""}`}
       aria-hidden="true"
     >
       {assets.heroSlides.map((src, index) => (
@@ -75,8 +75,8 @@ export function Hero({ className }: HeroProps) {
       ))}
 
       <div className="absolute inset-0 bg-[#2b0a0d]/25" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#2b0a0d]/50 via-transparent to-[#2b0a0d]/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2b0a0d]/55 via-transparent to-[#2b0a0d]/15" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#2b0a0d]/70 via-[#2b0a0d]/35 to-[#2b0a0d]/45 md:from-[#2b0a0d]/50 md:via-transparent md:to-[#2b0a0d]/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2b0a0d]/80 via-[#2b0a0d]/30 to-[#2b0a0d]/25 md:from-[#2b0a0d]/55 md:via-transparent md:to-[#2b0a0d]/15" />
     </section>
   );
 }

@@ -29,17 +29,25 @@ export function CTAButtons({
   };
 
   return (
-    <div className="space-y-6">
-      <p className="max-w-[30rem] text-[clamp(1rem,1.25vw,1.125rem)] font-normal leading-[1.5] text-text-primary max-md:max-w-none md:max-w-[32rem]">
+    <div className="space-y-5 max-md:space-y-4">
+      <p className="max-w-full text-[clamp(0.9375rem,4.1vw,1.125rem)] font-normal leading-[1.5] text-text-primary md:max-w-[32rem]">
         {site.description.map((line) => (
           <span key={line} className="block">
             {line}
           </span>
         ))}
       </p>
-      <div className="flex items-center gap-4 max-md:flex-col max-md:items-stretch">
-        <ArrowButton label="Our Story" onClick={onOurStoryClick} />
-        <ArrowButton label="Start Project" onClick={handleStartProject} />
+      <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+        <ArrowButton
+          label="Our Story"
+          onClick={onOurStoryClick}
+          className="max-md:w-full"
+        />
+        <ArrowButton
+          label="Start Project"
+          onClick={handleStartProject}
+          className="max-md:w-full"
+        />
       </div>
     </div>
   );

@@ -24,38 +24,38 @@ export function LandingPage() {
       )}
 
       <main
-        className={`relative h-dvh overflow-hidden bg-bg-primary max-md:min-h-dvh max-md:h-auto max-md:overflow-y-auto ${
+        className={`relative min-h-dvh bg-bg-primary max-md:h-auto max-md:overflow-x-hidden max-md:overflow-y-auto md:h-dvh md:overflow-hidden ${
           isIntroActive ? "asma-page--loading" : ""
         }`}
       >
         <Hero />
 
         <div
-          className={`relative z-10 flex h-full flex-col px-5 transition-opacity duration-700 ease-out max-md:gap-8 max-md:pt-8 max-md:pb-8 md:px-12 md:py-10 ${
+          className={`relative z-10 flex min-h-dvh flex-col gap-7 px-4 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 transition-opacity duration-700 ease-out sm:gap-8 sm:px-5 sm:pt-8 md:h-full md:gap-0 md:px-12 md:py-10 ${
             isIntroActive ? "pointer-events-none opacity-0" : "opacity-100"
           } ${isOurStoryOpen ? "pointer-events-none invisible" : ""}`}
         >
           <Header />
 
-          <div className="relative min-h-0 flex-1 max-md:flex max-md:flex-col max-md:gap-8">
-            <div className="relative z-20 max-md:static max-md:text-left md:absolute md:right-0 md:top-[28%] md:-translate-y-1/2 md:text-right lg:top-[26%]">
-              <h1 className="text-[clamp(2.75rem,10vw+0.5rem,8.25rem)] leading-[0.95] tracking-[-0.02em] text-text-primary max-md:max-w-full md:whitespace-nowrap">
+          <div className="relative flex min-h-0 flex-1 flex-col gap-7 sm:gap-8 md:block md:gap-0">
+            <div className="relative z-20 order-1 w-full text-left md:absolute md:right-0 md:top-[28%] md:-translate-y-1/2 md:text-right lg:top-[26%]">
+              <h1 className="max-w-full text-[clamp(2.35rem,11.5vw,8.25rem)] leading-[0.95] tracking-[-0.02em] text-text-primary min-[400px]:text-[clamp(2.65rem,11vw,8.25rem)] md:whitespace-nowrap">
                 <span className="font-black">ASMA</span>
                 <span className="font-normal"> Creativo</span>
               </h1>
-              <p className="mt-3 max-w-full text-balance text-[clamp(1rem,0.65rem+1.5vw,1.75rem)] font-medium leading-snug text-text-primary md:mt-5">
+              <p className="mt-2.5 max-w-full text-balance text-[clamp(0.9375rem,4.25vw,1.75rem)] font-medium leading-snug text-text-primary min-[400px]:mt-3 md:mt-5">
                 {site.tagline}
               </p>
             </div>
 
-            <div className="relative z-10 max-md:static md:absolute md:bottom-[26%] md:left-0 lg:bottom-[24%]">
+            <div className="relative z-10 order-2 w-full md:absolute md:bottom-[26%] md:left-0 lg:bottom-[24%]">
               <CTAButtons
                 onOurStoryClick={() => setIsOurStoryOpen(true)}
                 onStartProjectClick={() => setIsQuestionnaireOpen(true)}
               />
             </div>
 
-            <div className="relative z-10 max-md:static max-md:w-full md:absolute md:bottom-0 md:right-0 md:w-[min(330px,28vw)]">
+            <div className="relative z-10 order-3 w-full md:absolute md:bottom-0 md:right-0 md:w-[min(330px,28vw)]">
               <ServiceCard />
             </div>
           </div>

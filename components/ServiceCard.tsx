@@ -14,11 +14,11 @@ export function ServiceCard() {
       className="w-full overflow-hidden rounded-2xl border border-white/25 bg-black/25 backdrop-blur-md"
       aria-label="Services"
     >
-      <div className="relative overflow-hidden px-4 pb-3 pt-3">
-        <p className="relative z-10 max-w-[14rem] text-[clamp(0.875rem,1.05vw,1rem)] font-medium leading-snug text-text-primary">
+      <div className="relative overflow-hidden px-4 pb-3 pt-3 max-md:px-3.5 max-md:pt-2.5">
+        <p className="relative z-10 max-w-full text-[clamp(0.8125rem,3.8vw,1rem)] font-medium leading-snug text-text-primary">
           {site.agencyLabel}
         </p>
-        <p className="relative z-10 mt-1.5 max-w-[18rem] text-[clamp(0.75rem,0.95vw,0.875rem)] font-normal leading-[1.45] text-text-primary/75">
+        <p className="relative z-10 mt-1.5 max-w-full text-[clamp(0.75rem,3.4vw,0.875rem)] font-normal leading-[1.45] text-text-primary/75">
           {site.description.map((line) => (
             <span key={line} className="block">
               {line}
@@ -32,7 +32,7 @@ export function ServiceCard() {
 
       <div className="px-4 py-3">
         <div
-          className="grid grid-cols-1 gap-x-6 gap-y-1.5 text-[clamp(0.8125rem,0.95vw,0.875rem)] font-normal leading-[1.4] text-text-primary/95 md:grid-cols-2"
+          className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[clamp(0.75rem,3.4vw,0.875rem)] font-normal leading-[1.4] text-text-primary/95 max-[360px]:grid-cols-1"
           key={activeTab}
         >
           {current.columns.map((column, columnIndex) => (
