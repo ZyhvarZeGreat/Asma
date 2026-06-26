@@ -10,13 +10,13 @@ export const assets = {
 } as const;
 
 export const site = {
-  headerTagline: "Building global brands from Africa.",
+  headerTagline: ["Building global", "brands from Africa."] as const,
   location: "Nigeria, Africa.",
   launchNotice: "Full Website Launching Soon",
   brandName: "ASMA Creativo",
   tagline: ["Building Global Brands", "From Africa."] as const,
   description: [
-    "A global branding and marketing agency building memorable brands",
+    "A global branding & marketing agency building memorable brands",
     "from Africa for the world.",
   ],
   agencyLabel: ["Global Brand &", "Marketing Agency"] as const,

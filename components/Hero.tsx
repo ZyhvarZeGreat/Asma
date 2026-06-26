@@ -54,7 +54,7 @@ export function Hero({ className }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 overflow-hidden bg-[#2b0a0d] max-md:fixed max-md:-z-[1]${className ? ` ${className}` : ""}`}
+      className={`absolute inset-0 z-0 overflow-hidden bg-bg-primary max-md:inset-x-0 max-md:top-0 max-md:bottom-auto max-md:h-[min(40vh,340px)] max-md:min-h-[240px] max-md:bg-bg-wine${className ? ` ${className}` : ""}`}
       aria-hidden="true"
     >
       {assets.heroSlides.map((src, index) => (
@@ -68,13 +68,20 @@ export function Hero({ className }: HeroProps) {
             alt=""
             fill
             priority={index === 0}
-            className="object-cover object-center"
+            className="object-cover object-[center_20%] max-md:object-[center_15%] md:object-center"
             sizes="100vw"
           />
         </div>
       ))}
 
-      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-black/40 md:bg-black/50"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-b from-transparent via-bg-wine/70 to-bg-wine md:hidden"
+        aria-hidden="true"
+      />
     </section>
   );
 }

@@ -13,15 +13,15 @@ export function CTAButtons({
   onStartProjectClick,
 }: CTAButtonsProps) {
   return (
-    <div className="space-y-5 max-md:space-y-4">
-      <p className="max-w-full text-[clamp(calc(1.125rem_+_1px),calc(4.75vw_+_1px),calc(1.5rem_+_1px))] font-normal leading-[1.45] text-bg-button-hover">
+    <div className="space-y-4 max-md:space-y-3 md:space-y-5">
+      <p className="max-w-full text-[clamp(1rem,4.25vw,1.5rem)] font-normal leading-[1.5] text-bg-button-hover max-md:max-w-[22rem]">
         {site.description.map((line) => (
-          <span key={line} className="block whitespace-nowrap">
+          <span key={line} className="block max-md:whitespace-normal md:whitespace-nowrap">
             {line}
           </span>
         ))}
       </p>
-      <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+      <div className="flex flex-col items-stretch gap-2.5 max-md:gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
         <ArrowButton
           label="Our Story"
           onClick={onOurStoryClick}

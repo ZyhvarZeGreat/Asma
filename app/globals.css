@@ -2,6 +2,7 @@
 
 :root {
   --bg-primary: #0a0405;
+  --bg-wine: #230e10;
   --bg-surface: #1a0f10;
   --bg-button: #491927;
   --bg-button-hover: #b99793;
@@ -17,6 +18,7 @@
 
 @theme inline {
   --color-bg-primary: var(--bg-primary);
+  --color-bg-wine: var(--bg-wine);
   --color-bg-surface: var(--bg-surface);
   --color-bg-button: var(--bg-button);
   --color-bg-button-hover: var(--bg-button-hover);
