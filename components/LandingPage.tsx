@@ -43,8 +43,12 @@ export function LandingPage() {
                 <span className="font-black">ASMA</span>
                 <span className="font-normal"> Creativo</span>
               </h1>
-              <p className="mt-2.5 max-w-full text-balance text-[clamp(0.9375rem,4.25vw,1.75rem)] font-medium leading-snug text-text-primary min-[400px]:mt-3 md:mt-5">
-                {site.tagline}
+              <p className="mt-2.5 max-w-full text-[clamp(1.25rem,5.5vw,2.5rem)] font-normal leading-[1.15] text-bg-button-hover min-[400px]:mt-3 md:mt-5">
+                {site.tagline.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
               </p>
             </div>
 
@@ -55,7 +59,7 @@ export function LandingPage() {
               />
             </div>
 
-            <div className="relative z-10 order-3 w-full md:absolute md:bottom-0 md:right-0 md:w-[min(330px,28vw)]">
+            <div className="relative z-10 order-3 w-full md:absolute md:bottom-0 md:right-0 md:w-[497px]">
               <ServiceCard />
             </div>
           </div>

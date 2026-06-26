@@ -14,12 +14,12 @@ export const site = {
   location: "Nigeria, Africa.",
   launchNotice: "Full Website Launching Soon",
   brandName: "ASMA Creativo",
-  tagline: "Building Global Brands From Africa.",
+  tagline: ["Building Global Brands", "From Africa."] as const,
   description: [
-    "A global branding and marketing agency",
-    "building memorable brands from Africa for the world",
+    "A global branding and marketing agency building memorable brands",
+    "from Africa for the world.",
   ],
-  agencyLabel: "Global Brand & Marketing Agency",
+  agencyLabel: ["Global Brand &", "Marketing Agency"] as const,
 } as const;
 
 export const services = {
@@ -33,8 +33,19 @@ export const services = {
   marketing: {
     label: "Marketing",
     columns: [
-      ["Growth Marketing", "Go-to-Market Strategy", "Market Positioning"],
-      ["Content Strategy", "Performance Marketing"],
+      [
+        "Growth Marketing",
+        "Go-to-Market Strategy",
+        "Content Marketing",
+        "Launch Campaigns",
+        "Website Development",
+      ],
+      [
+        "SEO",
+        "Marketing Analytics",
+        "Marketing Consulting",
+        "Social Media Management",
+      ],
     ],
   },
 } as const;

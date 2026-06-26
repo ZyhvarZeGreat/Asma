@@ -4,7 +4,7 @@
   --bg-primary: #0a0405;
   --bg-surface: #1a0f10;
   --bg-button: #491927;
-  --bg-button-hover: #5c2438;
+  --bg-button-hover: #b99793;
   --accent-rose: #d8b4a6;
   --text-primary: #ffffff;
   --text-tagline: #c9a8a8;
@@ -611,22 +611,31 @@ main.asma-page--loading {
 .btn-animate-chars--tab {
   gap: 0;
   height: auto;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  font-size: 16px;
-  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.375rem !important;
+  font-size: 24px;
+  font-weight: 400;
+  background: transparent;
 }
 
 .btn-animate-chars--tab .btn-animate-chars__bg {
-  border-radius: 9999px;
+  display: none;
 }
 
 .btn-animate-chars--tab-active {
-  color: #1a0a0a;
-  background-color: var(--accent-rose);
+  color: var(--text-primary);
+  background-color: var(--bg-button-hover);
+  border-radius: 0.375rem !important;
 }
 
-.btn-animate-chars--tab-active:hover .btn-animate-chars__bg {
-  inset: 0.125em;
-  background-color: var(--accent-rose);
+.btn-animate-chars--tab-active:hover {
+  background-color: var(--bg-button-hover);
+  border-radius: 0.375rem !important;
+}
+
+@media (max-width: 767px) {
+  .btn-animate-chars--tab {
+    font-size: clamp(1.125rem, 5.5vw, 1.5rem);
+    padding: 0.125rem 0.375rem;
+  }
 }

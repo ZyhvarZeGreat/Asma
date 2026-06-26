@@ -37,8 +37,8 @@ export function ArrowButton({
         ))}
       </span>
 
-      <span className="relative z-[1] flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border border-white/30">
-        <ArrowRight className="h-2.5 w-2.5 transition-transform group-hover:translate-x-px" />
+      <span className="relative z-[1] flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/30 bg-bg-button-hover">
+        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-px" />
       </span>
     </button>
   );

@@ -8,6 +8,7 @@ type StaggerButtonProps = {
   isActive?: boolean;
   variant?: "default" | "tab";
   type?: "button" | "submit";
+  className?: string;
 };
 
 export function StaggerButton({
@@ -16,6 +17,7 @@ export function StaggerButton({
   isActive = false,
   variant = "default",
   type = "button",
+  className,
 }: StaggerButtonProps) {
   const isTab = variant === "tab";
 
@@ -25,12 +27,12 @@ export function StaggerButton({
       onClick={onClick}
       aria-pressed={isTab ? isActive : undefined}
       className={`btn-animate-chars group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-rose ${
-        isTab ? "btn-animate-chars--tab" : ""
-      } ${isTab && isActive ? "btn-animate-chars--tab-active" : ""}`}
+        isTab ? "btn-animate-chars--tab !h-auto rounded-md" : ""
+      } ${isTab && isActive ? "btn-animate-chars--tab-active rounded-md" : ""}${
+        className ? ` ${className}` : ""
+      }`}
     >
-      {!isTab || !isActive ? (
-        <div className="btn-animate-chars__bg" aria-hidden="true" />
-      ) : null}
+      {!isTab ? <div className="btn-animate-chars__bg" aria-hidden="true" /> : null}
 
       <span data-button-animate-chars className="btn-animate-chars__text">
         {[...label].map((char, index) => (

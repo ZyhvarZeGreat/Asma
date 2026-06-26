@@ -2,6 +2,7 @@ export const colors = {
   bgPrimary: "#140808",
   bgSurface: "#1A0F10",
   bgButton: "#491927",
+  bgButtonHover: "#b99793",
   accentRose: "#D8B4A6",
   textPrimary: "#FFFFFF",
   textMuted: "rgba(255, 255, 255, 0.72)",

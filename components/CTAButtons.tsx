@@ -1,8 +1,6 @@
 "use client";
 
 import { ArrowButton } from "@/components/ui/ArrowButton";
-import { openCalendlyPopup } from "@/lib/calendly";
-import { CALENDLY_URL, INTAKE_FORM_URL } from "@/lib/links";
 import { site } from "@/lib/content";
 
 type CTAButtonsProps = {
@@ -14,25 +12,11 @@ export function CTAButtons({
   onOurStoryClick,
   onStartProjectClick,
 }: CTAButtonsProps) {
-  const handleStartProject = () => {
-    if (INTAKE_FORM_URL) {
-      onStartProjectClick();
-      return;
-    }
-
-    if (CALENDLY_URL) {
-      void openCalendlyPopup(CALENDLY_URL);
-      return;
-    }
-
-    onStartProjectClick();
-  };
-
   return (
     <div className="space-y-5 max-md:space-y-4">
-      <p className="max-w-full text-[clamp(0.9375rem,4.1vw,1.125rem)] font-normal leading-[1.5] text-text-primary md:max-w-[32rem]">
+      <p className="max-w-full text-[clamp(calc(1.125rem_+_1px),calc(4.75vw_+_1px),calc(1.5rem_+_1px))] font-normal leading-[1.45] text-bg-button-hover">
         {site.description.map((line) => (
-          <span key={line} className="block">
+          <span key={line} className="block whitespace-nowrap">
             {line}
           </span>
         ))}
@@ -45,7 +29,7 @@ export function CTAButtons({
         />
         <ArrowButton
           label="Start Project"
-          onClick={handleStartProject}
+          onClick={onStartProjectClick}
           className="max-md:w-full"
         />
       </div>

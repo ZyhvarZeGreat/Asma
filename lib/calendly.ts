@@ -64,3 +64,9 @@ export async function openCalendlyPopup(url: string): Promise<void> {
   await loadCalendlyScript();
   window.Calendly?.initPopupWidget({ url });
 }
+
+export function redirectToCalendly(url: string): void {
+  if (!url || typeof window === "undefined") return;
+
+  window.location.assign(url);
+}

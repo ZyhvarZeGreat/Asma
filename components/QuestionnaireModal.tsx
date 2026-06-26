@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { JotformEmbed } from "@/components/JotformEmbed";
 import { TypeformEmbed } from "@/components/TypeformEmbed";
-import { openCalendlyPopup } from "@/lib/calendly";
+import { loadCalendlyScript, openCalendlyPopup } from "@/lib/calendly";
 import { CALENDLY_URL, JOTFORM_URL, TYPEFORM_URL } from "@/lib/links";
 import {
   initialQuestionnaireAnswers,
@@ -12,6 +12,10 @@ import {
   type QuestionnaireAnswers,
   type QuestionnaireField,
 } from "@/lib/questionnaire";
+import {
+  submitQuestionnaire,
+  submitQuestionnaireInBackground,
+} from "@/lib/submitQuestionnaire";
 
 type QuestionnaireModalProps = {
   isOpen: boolean;
@@ -42,6 +46,8 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
   const [answers, setAnswers] =
     useState<QuestionnaireAnswers>(initialQuestionnaireAnswers);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   const totalSteps = questionnaireSteps.length + 1;
@@ -63,6 +69,8 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
       setStep(0);
       setAnswers(initialQuestionnaireAnswers);
       setSubmitted(false);
+      setIsSubmitting(false);
+      setSubmitError(null);
     }, 350);
     return () => window.clearTimeout(timeout);
   }, [isOpen]);
@@ -93,6 +101,12 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
     }
   }, [visible, step, submitted, isIntro, usesExternalForm]);
 
+  useEffect(() => {
+    if (isOpen && CALENDLY_URL) {
+      void loadCalendlyScript();
+    }
+  }, [isOpen]);
+
   if (!mounted) return null;
 
   const currentValue = currentStep
@@ -105,14 +119,37 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
       ? currentValue.length > 0
       : currentValue.trim().length > 0;
 
-  const handleNext = () => {
-    if (!canContinue) return;
+  const handleNext = async () => {
+    if (!canContinue || isSubmitting) return;
 
     if (isLastStep) {
-      setSubmitted(true);
+      if (CALENDLY_URL) {
+        submitQuestionnaireInBackground(answers);
+        onClose();
+        void openCalendlyPopup(CALENDLY_URL);
+        return;
+      }
+
+      setIsSubmitting(true);
+      setSubmitError(null);
+
+      try {
+        await submitQuestionnaire(answers);
+        setSubmitted(true);
+      } catch (error) {
+        setSubmitError(
+          error instanceof Error
+            ? error.message
+            : "Failed to submit application.",
+        );
+      } finally {
+        setIsSubmitting(false);
+      }
+
       return;
     }
 
+    setSubmitError(null);
     setStep((prev) => prev + 1);
   };
 
@@ -320,23 +357,37 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
               )}
             </div>
 
-            <div className="mt-10 flex items-center justify-between gap-4">
-              <button
-                type="button"
-                onClick={handleBack}
-                disabled={step === 0}
-                className="text-[15px] font-normal text-text-muted transition-opacity disabled:opacity-30"
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                disabled={!canContinue}
-                className="rounded-lg bg-bg-button px-6 py-3 text-[15px] font-normal text-text-primary transition-colors hover:bg-bg-button-hover disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {isIntro ? "Begin Application" : isLastStep ? "Submit" : "Continue"}
-              </button>
+            <div className="mt-10 flex flex-col gap-3">
+              {submitError ? (
+                <p className="text-[14px] font-normal leading-snug text-red-300">
+                  {submitError}
+                </p>
+              ) : null}
+
+              <div className="flex items-center justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  disabled={step === 0 || isSubmitting}
+                  className="text-[15px] font-normal text-text-muted transition-opacity disabled:opacity-30"
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void handleNext()}
+                  disabled={!canContinue || isSubmitting}
+                  className="rounded-lg bg-bg-button px-6 py-3 text-[15px] font-normal text-text-primary transition-colors hover:bg-bg-button-hover disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {isSubmitting
+                    ? "Sending..."
+                    : isIntro
+                      ? "Begin Application"
+                      : isLastStep
+                        ? "Submit"
+                        : "Continue"}
+                </button>
+              </div>
             </div>
           </>
         )}

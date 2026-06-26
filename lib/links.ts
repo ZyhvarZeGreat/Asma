@@ -1,4 +1,8 @@
-const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL?.trim() ?? "";
+const DEFAULT_CALENDLY_URL =
+  "https://calendly.com/asmacreativo-info/30-minutes-meeting";
+
+const calendlyUrl =
+  process.env.NEXT_PUBLIC_CALENDLY_URL?.trim() || DEFAULT_CALENDLY_URL;
 const typeformUrl = process.env.NEXT_PUBLIC_TYPEFORM_URL?.trim() ?? "";
 const jotformUrl = process.env.NEXT_PUBLIC_JOTFORM_URL?.trim() ?? "";
 
