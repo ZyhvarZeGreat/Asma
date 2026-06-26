@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { JotformEmbed } from "@/components/JotformEmbed";
 import { TypeformEmbed } from "@/components/TypeformEmbed";
-import { loadCalendlyScript, openCalendly, isMobileViewport } from "@/lib/calendly";
+import { isMobileViewport, loadCalendlyScript, openCalendly, redirectToCalendly } from "@/lib/calendly";
 import { CALENDLY_URL, JOTFORM_URL, TYPEFORM_URL } from "@/lib/links";
 import {
   initialQuestionnaireAnswers,
@@ -141,6 +141,27 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
 
     if (isLastStep) {
       if (CALENDLY_URL) {
+        if (isMobileViewport()) {
+          setIsSubmitting(true);
+          setSubmitError(null);
+
+          try {
+            await submitQuestionnaire(answers);
+            onClose();
+            redirectToCalendly(CALENDLY_URL);
+          } catch (error) {
+            setSubmitError(
+              error instanceof Error
+                ? error.message
+                : "Failed to submit application.",
+            );
+          } finally {
+            setIsSubmitting(false);
+          }
+
+          return;
+        }
+
         submitQuestionnaireInBackground(answers);
         onClose();
         void openCalendly(CALENDLY_URL);
