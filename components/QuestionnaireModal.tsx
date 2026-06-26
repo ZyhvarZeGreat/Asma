@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { JotformEmbed } from "@/components/JotformEmbed";
 import { TypeformEmbed } from "@/components/TypeformEmbed";
-import { loadCalendlyScript, openCalendlyPopup } from "@/lib/calendly";
+import { loadCalendlyScript, openCalendly, isMobileViewport } from "@/lib/calendly";
 import { CALENDLY_URL, JOTFORM_URL, TYPEFORM_URL } from "@/lib/links";
 import {
   initialQuestionnaireAnswers,
@@ -16,6 +16,7 @@ import {
   submitQuestionnaire,
   submitQuestionnaireInBackground,
 } from "@/lib/submitQuestionnaire";
+import { validateQuestionnaireField } from "@/lib/validateQuestionnaire";
 
 type QuestionnaireModalProps = {
   isOpen: boolean;
@@ -30,7 +31,7 @@ function CalendlyBookButton({ className }: { className?: string }) {
   return (
     <button
       type="button"
-      onClick={() => void openCalendlyPopup(CALENDLY_URL)}
+      onClick={() => void openCalendly(CALENDLY_URL)}
       className={className}
     >
       Book a discovery call
@@ -48,6 +49,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldError, setFieldError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   const totalSteps = questionnaireSteps.length + 1;
@@ -71,6 +73,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
       setSubmitted(false);
       setIsSubmitting(false);
       setSubmitError(null);
+      setFieldError(null);
     }, 350);
     return () => window.clearTimeout(timeout);
   }, [isOpen]);
@@ -102,7 +105,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
   }, [visible, step, submitted, isIntro, usesExternalForm]);
 
   useEffect(() => {
-    if (isOpen && CALENDLY_URL) {
+    if (isOpen && CALENDLY_URL && !isMobileViewport()) {
       void loadCalendlyScript();
     }
   }, [isOpen]);
@@ -122,11 +125,25 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
   const handleNext = async () => {
     if (!canContinue || isSubmitting) return;
 
+    if (!isIntro && currentStep) {
+      const validationError = validateQuestionnaireField(
+        currentStep.id,
+        currentValue,
+      );
+
+      if (validationError) {
+        setFieldError(validationError);
+        return;
+      }
+
+      setFieldError(null);
+    }
+
     if (isLastStep) {
       if (CALENDLY_URL) {
         submitQuestionnaireInBackground(answers);
         onClose();
-        void openCalendlyPopup(CALENDLY_URL);
+        void openCalendly(CALENDLY_URL);
         return;
       }
 
@@ -150,16 +167,19 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
     }
 
     setSubmitError(null);
+    setFieldError(null);
     setStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
     if (step === 0) return;
+    setFieldError(null);
     setStep((prev) => prev - 1);
   };
 
   const updateAnswer = (value: string) => {
     if (!currentStep) return;
+    setFieldError(null);
     setAnswers((prev) => ({
       ...prev,
       [currentStep.id]: value,
@@ -172,7 +192,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
     if (!CALENDLY_URL) return;
 
     window.setTimeout(() => {
-      void openCalendlyPopup(CALENDLY_URL);
+      void openCalendly(CALENDLY_URL);
     }, 400);
   };
 
@@ -335,7 +355,16 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
                         onChange={(event) => updateAnswer(event.target.value)}
                         placeholder={currentStep.placeholder}
                         rows={5}
-                        className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 text-[17px] font-normal text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-accent-rose/60"
+                        maxLength={2000}
+                        aria-invalid={fieldError ? true : undefined}
+                        aria-describedby={
+                          fieldError ? "questionnaire-field-error" : undefined
+                        }
+                        className={`w-full resize-none rounded-xl border bg-white/[0.04] px-5 py-4 text-[17px] font-normal text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-accent-rose/60 ${
+                          fieldError
+                            ? "border-red-400/70"
+                            : "border-white/10"
+                        }`}
                       />
                     ) : (
                       <input
@@ -344,14 +373,55 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
                         value={currentValue}
                         onChange={(event) => updateAnswer(event.target.value)}
                         placeholder={currentStep?.placeholder}
-                        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 text-[17px] font-normal text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-accent-rose/60"
+                        maxLength={
+                          currentStep?.id === "fullName"
+                            ? 100
+                            : currentStep?.id === "companyName"
+                              ? 150
+                              : currentStep?.id === "email"
+                                ? 254
+                                : currentStep?.id === "websiteOrSocial"
+                                  ? 200
+                                  : undefined
+                        }
+                        autoComplete={
+                          currentStep?.id === "fullName"
+                            ? "name"
+                            : currentStep?.id === "companyName"
+                              ? "organization"
+                              : currentStep?.id === "email"
+                                ? "email"
+                                : "off"
+                        }
+                        inputMode={
+                          currentStep?.id === "email" ? "email" : undefined
+                        }
+                        aria-invalid={fieldError ? true : undefined}
+                        aria-describedby={
+                          fieldError ? "questionnaire-field-error" : undefined
+                        }
+                        className={`w-full rounded-xl border bg-white/[0.04] px-5 py-4 text-[17px] font-normal text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-accent-rose/60 ${
+                          fieldError
+                            ? "border-red-400/70"
+                            : "border-white/10"
+                        }`}
                         onKeyDown={(event) => {
                           if (event.key === "Enter") {
-                            handleNext();
+                            void handleNext();
                           }
                         }}
                       />
                     )}
+
+                    {fieldError ? (
+                      <p
+                        id="questionnaire-field-error"
+                        className="mt-3 text-[14px] font-normal leading-snug text-red-300"
+                        role="alert"
+                      >
+                        {fieldError}
+                      </p>
+                    ) : null}
                   </div>
                 </>
               )}

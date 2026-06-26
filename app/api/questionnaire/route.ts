@@ -6,6 +6,7 @@ import {
   type QuestionnaireAnswers,
   type QuestionnaireField,
 } from "@/lib/questionnaire";
+import { validateQuestionnaireAnswers } from "@/lib/validateQuestionnaire";
 
 function isQuestionnaireAnswers(value: unknown): value is QuestionnaireAnswers {
   if (!value || typeof value !== "object") return false;
@@ -15,11 +16,7 @@ function isQuestionnaireAnswers(value: unknown): value is QuestionnaireAnswers {
   for (const step of questionnaireSteps) {
     const field = step.id as QuestionnaireField;
     if (typeof record[field] !== "string") return false;
-    if (record[field].trim().length === 0) return false;
   }
-
-  const email = record.email;
-  if (typeof email !== "string" || !email.includes("@")) return false;
 
   return true;
 }
@@ -39,6 +36,11 @@ export async function POST(request: Request) {
       ...initialQuestionnaireAnswers,
       ...body,
     };
+
+    const validationError = validateQuestionnaireAnswers(answers);
+    if (validationError) {
+      return NextResponse.json({ error: validationError }, { status: 400 });
+    }
 
     await sendQuestionnaireEmail(answers);
 

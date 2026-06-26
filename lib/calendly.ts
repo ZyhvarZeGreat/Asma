@@ -58,6 +58,14 @@ export function loadCalendlyScript(): Promise<void> {
   return calendlyLoadPromise;
 }
 
+export function isMobileViewport(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
 export async function openCalendlyPopup(url: string): Promise<void> {
   if (!url) return;
 
@@ -69,4 +77,16 @@ export function redirectToCalendly(url: string): void {
   if (!url || typeof window === "undefined") return;
 
   window.location.assign(url);
+}
+
+/** Opens Calendly popup on desktop; redirects on mobile. */
+export async function openCalendly(url: string): Promise<void> {
+  if (!url) return;
+
+  if (isMobileViewport()) {
+    redirectToCalendly(url);
+    return;
+  }
+
+  await openCalendlyPopup(url);
 }
