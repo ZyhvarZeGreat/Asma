@@ -21,7 +21,7 @@ export function ArrowButton({
     <button
       type={type}
       onClick={onClick}
-      className={`btn-animate-chars group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-rose${className ? ` ${className}` : ""}`}
+      className={`btn-animate-chars btn-animate-chars--arrow group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-rose${className ? ` ${className}` : ""}`}
     >
       <div className="btn-animate-chars__bg" aria-hidden="true" />
 

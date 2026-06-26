@@ -25,12 +25,10 @@ export function CTAButtons({
         <ArrowButton
           label="Our Story"
           onClick={onOurStoryClick}
-          className="max-md:w-full"
         />
         <ArrowButton
           label="Start Project"
           onClick={onStartProjectClick}
-          className="max-md:w-full"
         />
       </div>
     </div>

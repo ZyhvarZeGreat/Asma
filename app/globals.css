@@ -604,12 +604,15 @@ main.asma-page--loading {
   .btn-animate-chars {
     height: 3.25rem;
     gap: 0.875rem;
-    padding: 0 1.125rem 0 1.25rem;
+    padding: 0 1rem 0 1.25rem;
     font-size: 1rem;
   }
 
-  .btn-animate-chars.w-full {
+  .btn-animate-chars--arrow {
     width: 100%;
+    justify-content: space-between;
+    padding-left: 1.25rem;
+    padding-right: 1rem;
   }
 }
 
