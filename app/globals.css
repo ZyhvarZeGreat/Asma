@@ -9,6 +9,7 @@
   --accent-rose: #d8b4a6;
   --text-primary: #ffffff;
   --text-tagline: #c9a8a8;
+  --text-story-body: #f6d3d0;
   --text-muted: rgba(255, 255, 255, 0.78);
   --text-subtle: rgba(255, 255, 255, 0.55);
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -25,12 +26,21 @@
   --color-accent-rose: var(--accent-rose);
   --color-text-primary: var(--text-primary);
   --color-text-tagline: var(--text-tagline);
+  --color-story-body: var(--text-story-body);
   --color-text-muted: var(--text-muted);
   --color-text-subtle: var(--text-subtle);
   --color-glass-bg: var(--glass-bg);
   --color-card-top-bg: var(--card-top-bg);
   --font-sans: var(--font-creato-display);
   --font-heading: var(--font-creato-display);
+}
+
+.story-body-copy {
+  font-family: var(--font-creato-regular), var(--font-creato-display), system-ui,
+    sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: 0;
 }
 
 html,
@@ -211,7 +221,7 @@ h6,
 }
 
 .story-divider {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .typeform-embed {

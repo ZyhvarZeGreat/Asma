@@ -54,7 +54,7 @@ export type ServiceTab = keyof typeof services;
 
 export const ourStory = {
   title: "Our Story",
-  tagline: "Building Global Brands From Africa.",
+  tagline: ["Building Global Brands", "From Africa."] as const,
   paragraphs: [
     "ASMA is a Pan-African branding and marketing agency dedicated to building globally recognized brands from Africa while helping global brands successfully enter and thrive within African markets.",
     "We provide brand strategy, market positioning, growth marketing, and go-to-market solutions that help businesses scale across borders, connect with consumers, and create lasting market impact.",

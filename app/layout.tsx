@@ -80,6 +80,14 @@ const creatoDisplay = localFont({
   display: "swap",
 });
 
+const creatoRegular = localFont({
+  src: "../public/images/fonts/CreatoDisplay-Regular.otf",
+  weight: "400",
+  style: "normal",
+  variable: "--font-creato-regular",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "ASMA Creativo | Building Global Brands From Africa",
   description:
@@ -92,7 +100,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={creatoDisplay.variable}>
+    <html
+      lang="en"
+      className={`${creatoDisplay.variable} ${creatoRegular.variable}`}
+    >
       <body className={`${creatoDisplay.className} font-sans antialiased`}>
         <CustomCursor />
         {children}

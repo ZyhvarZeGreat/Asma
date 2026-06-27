@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ourStory } from "@/lib/content";
 
 type OurStoryModalProps = {
@@ -65,7 +66,7 @@ export function OurStoryModal({ isOpen, onClose }: OurStoryModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="our-story-title"
-        className={`story-glass relative z-10 flex w-full max-w-[min(96vw,1014px)] flex-col overflow-hidden rounded-2xl sm:rounded-3xl max-md:max-h-[min(92dvh,100%)] md:h-[min(72dvh,520px)] md:max-h-none ${
+        className={`story-glass relative z-10 flex w-full max-w-[min(96vw,1306.97px)] flex-col overflow-hidden rounded-2xl sm:rounded-3xl max-md:max-h-[min(92dvh,100%)] md:h-[600px] md:max-h-[min(90dvh,600px)] ${
           visible ? "animate-modal-in" : "animate-modal-out"
         }`}
         onClick={(event) => event.stopPropagation()}
@@ -92,36 +93,59 @@ export function OurStoryModal({ isOpen, onClose }: OurStoryModalProps) {
             ×
           </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:h-full md:overflow-hidden">
-            <div className="flex flex-col items-start justify-center border-b border-white/10 px-5 pb-6 pt-2 text-left sm:px-6 md:min-h-0 md:border-b-0 md:border-r md:px-10 md:py-6 md:pl-12 md:pt-6">
-              <h2
-                id="our-story-title"
-                className="animate-title-in font-sans text-[clamp(2.75rem,13vw,4.5rem)] font-extrabold leading-[0.9] tracking-[-0.03em] text-text-primary sm:text-[clamp(3.25rem,12vw,5rem)] md:text-[clamp(5rem,8vw,7.5rem)] lg:text-[120px]"
-                style={{ animationDelay: "60ms" }}
-              >
-                <span className="block">Our</span>
-                <span className="block">Story</span>
-              </h2>
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,9fr)_minmax(0,11fr)] md:h-full md:overflow-hidden">
+            <div className="relative flex min-h-[min(220px,32vh)] flex-col overflow-hidden border-b border-white/10 px-5 pb-6 pt-2 text-left sm:min-h-[240px] sm:px-6 md:min-h-0 md:h-full md:border-b-0 md:px-10 md:py-6 md:pl-12 md:pt-6">
+              <Image
+                src="/images/afrca.svg"
+                alt=""
+                width={387}
+                height={423}
+                aria-hidden="true"
+                className="pointer-events-none absolute left-[calc(50%+70px)] top-1/2 h-[clamp(11rem,68%,20rem)] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.22] md:h-[min(74%,32rem)]"
+              />
 
-              <p
-                className="animate-title-in mt-4 max-w-full font-sans text-[clamp(0.9375rem,3.8vw,1.125rem)] font-normal leading-snug text-text-primary/90 sm:mt-5 sm:max-w-[16rem] md:mt-6"
-                style={{ animationDelay: "200ms" }}
-              >
-                {ourStory.tagline}
-              </p>
+              <div className="relative z-10 flex min-h-0 flex-1 flex-col md:ml-[30px]">
+                <div className="flex flex-1 items-center">
+                  <h2
+                    id="our-story-title"
+                    className="animate-title-in font-sans text-[clamp(3rem,14vw,5rem)] font-medium leading-[0.9] tracking-[-0.03em] text-text-primary sm:text-[clamp(3.5rem,13vw,5.5rem)] md:text-[clamp(6rem,10vw,8.5rem)] lg:text-[140px]"
+                    style={{ animationDelay: "60ms" }}
+                  >
+                    <span className="block">Our</span>
+                    <span className="block">Story</span>
+                  </h2>
+                </div>
+
+                <p
+                  className="animate-title-in max-w-full shrink-0 font-sans text-[clamp(0.9375rem,3.5vw,1.125rem)] font-normal leading-[1.2] text-story-body sm:max-w-[16rem] md:-translate-y-[55px]"
+                  style={{ animationDelay: "200ms" }}
+                >
+                  {ourStory.tagline.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </p>
+              </div>
             </div>
 
-            <div className="flex min-h-0 flex-col justify-center px-5 py-5 pb-6 sm:px-6 sm:py-6 sm:pb-8 md:overflow-y-auto md:px-12 md:py-6">
-              <div className="space-y-4 sm:space-y-5">
-                {ourStory.paragraphs.map((paragraph, index) => (
-                  <p
-                    key={paragraph.slice(0, 32)}
-                    className="animate-paragraph-in font-sans text-[clamp(0.8125rem,3.6vw,0.9375rem)] font-normal leading-[1.65] text-text-primary md:text-[15px] md:leading-[1.7]"
-                    style={{ animationDelay: `${300 + index * 110}ms` }}
-                  >
-                    {paragraph}
-                  </p>
-                ))}
+            <div className="flex min-h-0 flex-col justify-center px-5 py-5 pb-6 sm:px-6 sm:py-6 sm:pb-8 md:h-full md:overflow-y-auto md:px-8 md:py-8 md:pr-10">
+              <div className="flex w-full items-stretch gap-6 md:gap-8">
+                <div
+                  className="story-divider hidden w-[3px] shrink-0 rounded-full md:block"
+                  aria-hidden="true"
+                />
+                <div className="min-w-0 flex-1 space-y-5 md:space-y-6">
+                  {ourStory.paragraphs.map((paragraph, index) => (
+                    <p
+                      key={paragraph.slice(0, 32)}
+                      className="story-body-copy animate-paragraph-in text-[15px] leading-[1.45] text-story-body md:text-[17px] md:leading-[1.48]"
+                      style={{ animationDelay: `${300 + index * 110}ms` }}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
