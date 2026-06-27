@@ -59,7 +59,7 @@ export function Hero({ className, isActive = false }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      className={`absolute inset-0 z-0 overflow-hidden bg-bg-primary max-md:inset-x-0 max-md:top-0 max-md:bottom-auto max-md:h-[min(40vh,340px)] max-md:min-h-[240px] max-md:bg-bg-wine${className ? ` ${className}` : ""}`}
+      className={`absolute inset-0 z-0 overflow-hidden rounded-[32px] bg-bg-primary max-md:inset-x-0 max-md:top-0 max-md:bottom-auto max-md:h-[min(40vh,340px)] max-md:min-h-[240px] max-md:bg-bg-wine${className ? ` ${className}` : ""}`}
       aria-hidden="true"
     >
       {assets.heroSlides.map((src, index) => (
