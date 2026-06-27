@@ -73,16 +73,13 @@ export function Hero({ className, isActive = false }: HeroProps) {
             alt=""
             fill
             priority={index === 0}
+            unoptimized
             className="object-cover object-[center_20%] max-md:object-[center_15%] md:object-center"
             sizes="100vw"
           />
         </div>
       ))}
 
-      <div
-        className="absolute inset-0 z-[1] bg-black/40 md:bg-black/50"
-        aria-hidden="true"
-      />
       <div
         className="hero-mobile-fade pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[55%] md:hidden"
         aria-hidden="true"

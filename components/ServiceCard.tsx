@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { services, site, type ServiceTab } from "@/lib/content";
-import { WavyLines } from "@/components/ui/WavyLines";
+import { assets, services, site, type ServiceTab } from "@/lib/content";
 import { StaggerButton } from "@/components/ui/StaggerButton";
+
+const dividerColorClass = "bg-[#F6D3D0]";
 
 export function ServiceCard() {
   const [activeTab, setActiveTab] = useState<ServiceTab | null>(null);
@@ -11,13 +12,14 @@ export function ServiceCard() {
 
   return (
     <aside
-      className="flex h-[240px] w-full max-w-[497px] flex-col overflow-hidden rounded-2xl border-2 border-white/25 bg-transparent md:h-[280px] md:w-[497px] md:max-w-none md:border md:border-white/25"
+      className="relative flex w-full min-w-0 max-w-[497px] aspect-[1499/898] flex-col overflow-hidden rounded-2xl bg-cover bg-center bg-no-repeat md:w-[497px] md:max-w-none"
+      style={{ backgroundImage: `url(${assets.serviceCardBg})` }}
       aria-label="Services"
     >
-      <div className="flex min-h-0 flex-[7] flex-col overflow-hidden">
+      <div className="relative z-10 flex min-h-0 flex-[7] flex-col overflow-hidden">
         {!current ? (
-          <div className="relative flex flex-1 flex-col justify-center overflow-hidden pr-4 pl-6 max-md:py-3 md:pr-5 md:pl-7">
-            <p className="relative z-10 text-left text-[clamp(1.0625rem,4.5vw,1.625rem)] font-normal leading-[1.2] text-text-primary">
+          <div className="flex flex-1 flex-col justify-center overflow-hidden pr-4 pl-6 max-md:py-3 md:pr-5 md:pl-7">
+            <p className="text-left text-[clamp(1.0625rem,4.5vw,1.625rem)] font-normal leading-[1.2] text-text-primary">
               {site.agencyLabel.map((line) => (
                 <span
                   key={line}
@@ -27,7 +29,6 @@ export function ServiceCard() {
                 </span>
               ))}
             </p>
-            <WavyLines className="pointer-events-none absolute -right-3 top-1/2 h-[4.25rem] w-[78%] -translate-y-1/2 opacity-100 max-md:opacity-60" />
           </div>
         ) : (
           <div className="flex flex-1 flex-col justify-center overflow-hidden py-3 pr-4 pl-6 md:pr-5 md:pl-7">
@@ -48,13 +49,11 @@ export function ServiceCard() {
       </div>
 
       <div
-        className="mx-4 h-0 shrink-0 border-t-2 border-white/25 md:mx-5 md:border-t md:border-white/25"
+        className={`relative z-10 mx-4 h-[0.5px] shrink-0 md:mx-5 ${dividerColorClass}`}
         aria-hidden="true"
       />
 
-      <div
-        className="flex min-h-0 shrink-0 flex-[3] flex-col justify-start px-4 pt-4 pb-3 md:px-5 md:pt-7 md:pb-3"
-      >
+      <div className="relative z-10 flex min-h-0 shrink-0 flex-[3] flex-col justify-start px-4 pt-4 pb-3 md:px-5 md:pt-7 md:pb-3">
         <div className="flex items-center text-[clamp(1.125rem,5.5vw,1.5rem)] leading-none md:text-[24px]">
           <StaggerButton
             label={services.branding.label}
@@ -64,7 +63,7 @@ export function ServiceCard() {
             onClick={() => setActiveTab("branding")}
           />
           <span
-            className="mx-4 h-[1.125em] w-0.5 shrink-0 bg-white/25 md:mx-7 md:w-px md:bg-white/25"
+            className={`mx-4 h-[1.125em] w-[0.5px] shrink-0 md:mx-7 ${dividerColorClass}`}
             aria-hidden="true"
           />
           <StaggerButton

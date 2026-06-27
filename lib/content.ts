@@ -7,6 +7,7 @@ export const assets = {
     "/images/hero-slide-4.png",
   ],
   logo: "/images/logo.png",
+  serviceCardBg: "/images/service-card-bg.png",
 } as const;
 
 export const site = {

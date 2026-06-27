@@ -58,7 +58,7 @@ export function LandingPage() {
               />
             </div>
 
-            <div className="relative z-10 order-3 w-full max-md:bg-bg-wine md:absolute md:bottom-0 md:right-0 md:w-[497px]">
+            <div className="relative z-10 order-3 w-full max-md:mt-[10px] md:absolute md:bottom-0 md:right-0 md:w-[497px]">
               <ServiceCard />
             </div>
           </div>
