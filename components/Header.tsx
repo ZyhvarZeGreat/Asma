@@ -2,7 +2,7 @@ import Image from "next/image";
 import { assets, site } from "@/lib/content";
 
 const headerTextClass =
-  "font-sans text-[clamp(0.8125rem,0.45rem+1.15vw,1.375rem)] font-normal leading-[1.35] text-text-primary";
+  "font-sans text-[clamp(0.75rem,0.35rem+0.85vw,1.0625rem)] font-normal leading-[1.35] text-bg-button-hover";
 
 type HeaderProps = {
   className?: string;

@@ -39,7 +39,6 @@ export function PageIntro({ onComplete }: PageIntroProps) {
       const coverImageExtra = container.querySelectorAll(
         ".asma-intro__cover-image-extra",
       );
-      const headerLetter = container.querySelectorAll(".asma-intro__letter-white");
       const navLinks = container.querySelectorAll(".asma-intro__nav a");
 
       container.classList.remove("is--pending");
@@ -136,19 +135,6 @@ export function PageIntro({ onComplete }: PageIntroProps) {
         );
       }
 
-      if (headerLetter.length) {
-        tl.from(
-          headerLetter,
-          {
-            yPercent: 100,
-            duration: OPEN_DURATION,
-            ease: "expo.out",
-            stagger: STAGGER_CHAR,
-          },
-          "<1.2",
-        );
-      }
-
       if (navLinks.length) {
         tl.from(
           navLinks,
@@ -158,7 +144,7 @@ export function PageIntro({ onComplete }: PageIntroProps) {
             ease: "expo.out",
             stagger: 0.1,
           },
-          "<",
+          "<1.2",
         );
       }
 
@@ -247,31 +233,6 @@ export function PageIntro({ onComplete }: PageIntroProps) {
               </a>
             </div>
           </nav>
-        </div>
-
-        <div className="asma-intro__bottom">
-          <div className="asma-intro__h1-bottom">
-            <div className="asma-intro__h1-bottom-line">
-              {[..."ASMA"].map((char, index) => (
-                <span
-                  key={`asma-${char}-${index}`}
-                  className="asma-intro__letter-white"
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-            <div className="asma-intro__h1-bottom-line">
-              {[..."Creativo"].map((char, index) => (
-                <span
-                  key={`creativo-${char}-${index}`}
-                  className="asma-intro__letter-white"
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

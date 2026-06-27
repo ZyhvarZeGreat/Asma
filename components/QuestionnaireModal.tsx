@@ -334,7 +334,7 @@ export function QuestionnaireModal({ isOpen, onClose }: QuestionnaireModalProps)
                     {questionnaireIntro.paragraphs.map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className="animate-paragraph-in text-[17px] font-normal leading-[1.7] text-text-primary/95"
+                        className="story-body-copy animate-paragraph-in text-[17px] leading-[1.48] text-text-primary/95"
                         style={{ animationDelay: `${160 + index * 100}ms` }}
                       >
                         {paragraph}

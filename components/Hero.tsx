@@ -8,12 +8,13 @@ import { assets } from "@/lib/content";
 
 type HeroProps = {
   className?: string;
+  isActive?: boolean;
 };
 
 const SLIDE_DURATION = 5;
 const FADE_DURATION = 1.5;
 
-export function Hero({ className }: HeroProps) {
+export function Hero({ className, isActive = false }: HeroProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -33,7 +34,11 @@ export function Hero({ className }: HeroProps) {
       gsap.set(slides, { opacity: 0 });
       gsap.set(slides[0], { opacity: 1 });
 
+      if (!isActive) return;
+
       const tl = gsap.timeline({ repeat: -1, defaults: { ease: "power2.inOut" } });
+
+      tl.to({}, { duration: SLIDE_DURATION });
 
       slides.forEach((_, index) => {
         const current = slides[index];
@@ -48,7 +53,7 @@ export function Hero({ className }: HeroProps) {
         tl.kill();
       };
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [isActive] },
   );
 
   return (
@@ -75,11 +80,11 @@ export function Hero({ className }: HeroProps) {
       ))}
 
       <div
-        className="absolute inset-0 bg-black/40 md:bg-black/50"
+        className="absolute inset-0 z-[1] bg-black/40 md:bg-black/50"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-b from-transparent via-bg-wine/70 to-bg-wine md:hidden"
+        className="hero-mobile-fade pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[55%] md:hidden"
         aria-hidden="true"
       />
     </section>
