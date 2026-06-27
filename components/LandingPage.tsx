@@ -32,15 +32,15 @@ export function LandingPage() {
         <Hero isActive={introComplete} />
 
         <div
-          className={`relative z-10 flex min-h-dvh flex-col transition-opacity duration-700 ease-out max-md:min-h-0 max-md:px-4 max-md:pb-[max(2rem,env(safe-area-inset-bottom))] max-md:pt-6 md:gap-0 md:px-12 md:py-10 ${
+          className={`relative z-10 flex min-h-dvh flex-col transition-opacity duration-700 ease-out max-md:min-h-0 max-md:px-[30px] max-md:pb-[max(2rem,env(safe-area-inset-bottom))] max-md:pt-6 md:gap-0 md:px-[78px] md:py-10 ${
             isIntroActive ? "pointer-events-none opacity-0" : "opacity-100"
           } ${isOurStoryOpen ? "pointer-events-none invisible" : ""}`}
         >
-          <Header className="max-md:absolute max-md:inset-x-0 max-md:top-0 max-md:z-30 max-md:px-4 max-md:pt-6" />
+          <Header className="max-md:absolute max-md:inset-x-0 max-md:top-0 max-md:z-30 max-md:px-[30px] max-md:pt-6" />
 
           {/* Mobile: hero band on top, wine background below; title overlaps hero fade */}
           <div className="relative flex min-h-0 flex-1 flex-col max-md:gap-3 max-md:pt-[calc(min(40vh,340px)-2.75rem)] md:block">
-            <div className="relative z-20 order-1 w-full text-left max-md:-mt-14 md:absolute md:right-0 md:top-[28%] md:-translate-y-[calc(50%-110px)] md:mt-0 md:text-right lg:top-[26%]">
+            <div className="relative z-20 order-1 w-full text-left max-md:-mt-[calc(3.5rem+15px)] md:absolute md:right-0 md:top-[28%] md:-translate-y-[calc(50%-95px)] md:mt-0 md:text-right lg:top-[26%]">
               <LandingHeroTitle isActive={introComplete} />
               <p className="mt-2 max-w-full text-[clamp(1.125rem,5vw,2.5rem)] font-normal leading-[1.2] text-bg-button-hover min-[400px]:mt-2.5 md:mt-5">
                 {site.tagline.map((line) => (
