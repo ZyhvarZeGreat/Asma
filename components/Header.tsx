@@ -40,18 +40,6 @@ export function Header({ className }: HeaderProps) {
       >
         {site.launchNotice}
       </p>
-      <button
-        type="button"
-        aria-label="Open menu"
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/30 text-text-primary md:hidden"
-        tabIndex={-1}
-      >
-        <span className="flex flex-col gap-[5px]" aria-hidden="true">
-          <span className="block h-px w-4 bg-current" />
-          <span className="block h-px w-4 bg-current" />
-          <span className="block h-px w-4 bg-current" />
-        </span>
-      </button>
     </header>
   );
 }
