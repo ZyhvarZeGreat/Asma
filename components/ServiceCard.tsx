@@ -12,14 +12,14 @@ export function ServiceCard() {
 
   return (
     <aside
-      className="relative flex w-full min-w-0 max-w-[497px] aspect-[1499/898] flex-col overflow-hidden rounded-2xl bg-cover bg-center bg-no-repeat md:w-[497px] md:max-w-none"
+      className="service-card relative flex w-full min-w-0 max-w-[497px] aspect-[1499/898] flex-col overflow-hidden rounded-2xl bg-cover bg-center bg-no-repeat md:w-[497px] md:max-w-none"
       style={{ backgroundImage: `url(${assets.serviceCardBg})` }}
       aria-label="Services"
     >
-      <div className="relative z-10 flex min-h-0 max-md:flex-[8] flex-[7] flex-col overflow-hidden">
+      <div className="relative z-10 flex min-h-0 flex-[7] max-[429px]:flex-[8] flex-col overflow-hidden">
         {!current ? (
           <div className="flex flex-1 flex-col justify-center overflow-hidden pr-4 pl-6 max-md:py-3 md:pr-5 md:pl-7">
-            <p className="text-left text-[clamp(1.0625rem,4.5vw,1.625rem)] font-normal leading-[1.2] text-text-primary">
+            <p className="text-left text-[clamp(1.0625rem,4.5vw,1.625rem)] font-normal leading-[1.2] text-text-primary max-[429px]:text-[clamp(0.9375rem,4.5vw,calc(1.625rem-2px))]">
               {site.agencyLabel.map((line) => (
                 <span
                   key={line}
@@ -33,7 +33,7 @@ export function ServiceCard() {
         ) : (
           <div className="flex flex-1 flex-col justify-center overflow-hidden py-3 pr-4 pl-6 md:pr-5 md:pl-7">
             <div
-              className="grid grid-cols-2 content-start gap-x-4 gap-y-1.5 text-[clamp(0.8125rem,3.6vw,1rem)] font-normal leading-[1.35] text-text-primary max-[360px]:grid-cols-1 md:gap-x-6"
+              className="grid grid-cols-2 content-start gap-x-4 gap-y-1.5 text-[clamp(0.8125rem,3.6vw,1rem)] font-normal leading-[1.35] text-text-primary max-[429px]:text-[clamp(0.6875rem,3.6vw,calc(1rem-2px))] max-[360px]:grid-cols-1 md:gap-x-6"
               key={activeTab}
             >
               {current.columns.map((column, columnIndex) => (
@@ -53,8 +53,8 @@ export function ServiceCard() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex min-h-0 shrink-0 max-md:flex-[2] flex-[3] flex-col justify-start px-4 pt-3 pb-2.5 md:px-5 md:pt-7 md:pb-3">
-        <div className="flex items-center text-[clamp(1.125rem,5.5vw,1.5rem)] leading-none md:text-[24px]">
+      <div className="relative z-10 flex min-h-0 shrink-0 flex-[3] max-[429px]:flex-[2] flex-col justify-start px-4 pt-4 pb-3 max-[429px]:pt-3 max-[429px]:pb-2.5 md:px-5 md:pt-7 md:pb-3">
+        <div className="flex items-center text-[clamp(1.125rem,5.5vw,1.5rem)] leading-none max-[429px]:text-[clamp(1rem,5.5vw,calc(1.5rem-2px))] md:text-[24px]">
           <StaggerButton
             label={services.branding.label}
             isActive={activeTab === "branding"}

@@ -696,3 +696,9 @@ main.asma-page--loading {
     padding: 0.125rem 0.375rem;
   }
 }
+
+@media (max-width: 429px) {
+  .service-card .btn-animate-chars--tab {
+    font-size: clamp(1rem, 5.5vw, calc(1.5rem - 2px));
+  }
+}
