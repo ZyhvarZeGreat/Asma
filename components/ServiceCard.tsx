@@ -16,7 +16,7 @@ export function ServiceCard() {
       style={{ backgroundImage: `url(${assets.serviceCardBg})` }}
       aria-label="Services"
     >
-      <div className="relative z-10 flex min-h-0 flex-[7] flex-col overflow-hidden">
+      <div className="relative z-10 flex min-h-0 max-md:flex-[8] flex-[7] flex-col overflow-hidden">
         {!current ? (
           <div className="flex flex-1 flex-col justify-center overflow-hidden pr-4 pl-6 max-md:py-3 md:pr-5 md:pl-7">
             <p className="text-left text-[clamp(1.0625rem,4.5vw,1.625rem)] font-normal leading-[1.2] text-text-primary">
@@ -53,7 +53,7 @@ export function ServiceCard() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex min-h-0 shrink-0 flex-[3] flex-col justify-start px-4 pt-4 pb-3 md:px-5 md:pt-7 md:pb-3">
+      <div className="relative z-10 flex min-h-0 shrink-0 max-md:flex-[2] flex-[3] flex-col justify-start px-4 pt-3 pb-2.5 md:px-5 md:pt-7 md:pb-3">
         <div className="flex items-center text-[clamp(1.125rem,5.5vw,1.5rem)] leading-none md:text-[24px]">
           <StaggerButton
             label={services.branding.label}
