@@ -33,7 +33,7 @@ export function ServiceCard() {
         ) : (
           <div className="flex flex-1 flex-col justify-center overflow-hidden py-3 pr-4 pl-6 md:pr-5 md:pl-7">
             <div
-              className="grid grid-cols-2 content-start gap-x-4 gap-y-1.5 text-[clamp(0.8125rem,3.6vw,1rem)] font-normal leading-[1.35] text-text-primary max-[429px]:text-[clamp(0.6875rem,3.6vw,calc(1rem-2px))] max-[360px]:grid-cols-1 md:gap-x-6"
+              className="grid grid-cols-2 content-start gap-x-3 gap-y-1.5 text-[clamp(0.8125rem,3.6vw,1rem)] font-normal leading-[1.35] text-text-primary max-[429px]:gap-x-2 max-[429px]:text-[clamp(0.6875rem,3.6vw,calc(1rem-2px))] md:gap-x-6"
               key={activeTab}
             >
               {current.columns.map((column, columnIndex) => (
