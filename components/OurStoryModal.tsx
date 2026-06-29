@@ -54,7 +54,7 @@ export function OurStoryModal({ isOpen, onClose }: OurStoryModalProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-end justify-center p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4 md:p-8 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 ${
         visible ? "animate-overlay-in" : "animate-overlay-out"
       }`}
       role="presentation"
